@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/DetailPage.dart';
 import 'package:flutter_application_2/PremiereLeagueModel.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -46,12 +47,19 @@ class _ListAllFootbalState extends State<ListAllFootbal> {
       ),
       body: Center(
         child: Container(
-          child: isloaded
+          child: isloaded == true
               ? ListView.builder(
                   itemCount: premiereLeagueModel!.teams!.length,
                   itemBuilder: (BuildContext context, int index) {
                     return InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => DetailPage(
+                                  teams: premiereLeagueModel!.teams![index])),
+                        );
+                      },
                       child: Card(
                         child: Container(
                           margin: EdgeInsets.all(15),
